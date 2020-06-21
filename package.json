@@ -1,0 +1,26 @@
+{
+  "name": "ytbpush",
+  "version": "1.0.0",
+  "scripts": {
+    "clean": "shx rm -rf lib/",
+    "build": "shx rm -rf lib/ && coffee -o lib/ -c src/"
+  },
+  "files": [
+    "lib/",
+    "src/"
+  ],
+  "author": "An",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "coffeescript": "^2.5.1",
+    "shx": "^0.3.2"
+  },
+  "dependencies": {
+    "blueimp-md5": "^2.16.0",
+    "fluent-ffmpeg": "^2.1.2",
+    "koishi": "^1.12.0",
+    "uuid": "^8.1.0",
+    "youtube-dl": "^3.0.2"
+  }
+}
