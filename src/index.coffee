@@ -8,16 +8,14 @@ app = new App
 
 app.start()
 
-ctx = app
-  .user 1684734774
-  .plus app.groups
+ctx = app.groups
 
 checkUser = (meta)->
-  if meta.postType != 'message' then false
-  if !(meta.sender.role? and (meta.sender.role == 'admin' or meta.sender.role == 'owmer'))
-    meta.$send '只有管理员才让用哦www'
-    false
-  true
+  if meta.postType != 'message' then return false
+  if meta.sender.role and (meta.sender.role == 'admin' or meta.sender.role == 'owner')
+    return true
+  meta.$send '只有管理员才让用哦www'
+  return false
 
 ps = new Map()
 
@@ -30,7 +28,7 @@ ctx.command '转播 <url...>'
       meta.$send "id: #{id}\nurl: #{p.url}"
     p.on 'end', (id) ->
       ps.delete id
-      meta.$send "id: #{id} 转播结束"
+      meta.$send "id: #{id} 直播结束"
     p.on 'error', (err, id) ->
       ps.delete id
       meta.$send "id: #{id}\nerr: #{err}"
